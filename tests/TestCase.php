@@ -2,6 +2,8 @@
 
 namespace Pixelpillow\LunarApiMollieAdapter\Tests;
 
+use Dystcz\LunarApi\JsonApiServiceProvider;
+use Dystcz\LunarApi\LunarApiServiceProvider;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
@@ -18,6 +20,7 @@ use Lunar\Models\Currency;
 use Lunar\Models\CustomerGroup;
 use Lunar\Models\Order;
 use Lunar\Models\TaxClass;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Pixelpillow\LunarApiMollieAdapter\Tests\Stubs\Lunar\TestShippingModifier;
 use Pixelpillow\LunarApiMollieAdapter\Tests\Stubs\Lunar\TestTaxDriver;
@@ -27,6 +30,7 @@ use Pixelpillow\LunarApiMollieAdapter\Tests\Stubs\TestRedirectGenerator;
 class TestCase extends Orchestra
 {
     use MakesJsonApiRequests;
+    use WithWorkbench;
 
     /**
      * The order.
@@ -110,9 +114,9 @@ class TestCase extends Orchestra
             // Livewire
             \Livewire\LivewireServiceProvider::class,
 
-            // Lunar API
-            \Dystcz\LunarApi\LunarApiServiceProvider::class,
-            \Dystcz\LunarApi\JsonApiServiceProvider::class,
+            // Dystore API
+            LunarApiServiceProvider::class,
+            JsonApiServiceProvider::class,
 
             // Lunar API Mollie Adapter
             \Pixelpillow\LunarApiMollieAdapter\LunarApiMollieAdapterServiceProvider::class,
@@ -131,11 +135,6 @@ class TestCase extends Orchestra
         Config::set('lunar-api.mollie.redirect_url_generator', TestRedirectGenerator::class);
         Config::set('lunar-api.mollie.cancel_url_generator', TestRedirectGenerator::class);
 
-        // Config::set('auth.providers.users', [
-        //     'driver' => 'eloquent',
-        //     'model' => User::class,
-        // ]);
-
         /**
          * Lunar configuration
          */
@@ -150,7 +149,6 @@ class TestCase extends Orchestra
         Config::set('database.connections.sqlite', [
             'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
         ]);
 
         // Default payment driver

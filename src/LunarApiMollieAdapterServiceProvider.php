@@ -53,8 +53,8 @@ class LunarApiMollieAdapterServiceProvider extends ServiceProvider
         // Publish the config file.
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/mollie.php' => config_path('lunar-api/mollie.php'),
-            ], 'lunar-api.mollie.config');
+                __DIR__.'/../config/mollie.php' => config_path('dystore/mollie.php'),
+            ], 'dystore.mollie.config');
         }
 
         $this->loadRoutesFrom("{$this->root}/routes/api.php");
