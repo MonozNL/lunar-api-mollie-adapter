@@ -1,5 +1,5 @@
 {
-  "name": "pixelpillow/lunar-api-mollie-adapter",
+  "name": "monoznl/lunar-api-mollie-adapter",
   "description": "This addon enables Mollie payments on your Lunar storefront when using the Lunar API package.",
   "keywords": [
     "pixelpillow",
@@ -9,9 +9,9 @@
     "payments",
     "lunar-api-mollie-adapter"
   ],
-  "homepage": "https://github.com/pixelpillow/lunar-api-mollie-adapter",
+  "homepage": "https://github.com/MonozNL/lunar-api-mollie-adapter",
   "license": "MIT",
-  "version": "0.2.0",
+  "version": "1.0.3",
   "authors": [
     {
       "name": "Thomas van der Westen",
