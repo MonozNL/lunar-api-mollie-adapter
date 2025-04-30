@@ -2,8 +2,6 @@
 
 namespace Pixelpillow\LunarApiMollieAdapter;
 
-use Dystcz\LunarApi\Domain\Orders\Events\OrderPaymentCanceled;
-use Dystcz\LunarApi\Domain\Orders\Events\OrderPaymentFailed;
 use Dystcz\LunarApi\Domain\Payments\Contracts\PaymentIntent as PaymentIntentContract;
 use Dystcz\LunarApi\Domain\Payments\PaymentAdapters\PaymentAdapter;
 use Dystcz\LunarApi\Domain\Transactions\Models\Transaction;
@@ -15,7 +13,6 @@ use Illuminate\Support\Facades\Config;
 use Lunar\Models\Cart;
 use Lunar\Models\Contracts\Cart as CartContract;
 use Mollie\Api\Exceptions\ApiException;
-use Mollie\Laravel\Facades\Mollie;
 use Pixelpillow\LunarApiMollieAdapter\Actions\AuthorizeMolliePayment;
 use Pixelpillow\LunarApiMollieAdapter\Domain\Payments\Data\PaymentIntent;
 use Pixelpillow\LunarApiMollieAdapter\Exceptions\MissingMetadataException;
@@ -67,6 +64,7 @@ class MolliePaymentAdapter extends PaymentAdapter
 
     /**
      * Create payment intent.
+     * @throws MissingMetadataException|ApiException
      */
     public function createIntent(CartContract $cart, array $meta = [], ?int $amount = null): PaymentIntentContract
     {
@@ -103,7 +101,8 @@ class MolliePaymentAdapter extends PaymentAdapter
     /**
      * Validate the payment methose type against the Mollie payment method types
      *
-     * @param  string|null  $paymentMethodType  The payment method type eg. ideal
+     * @param string|null $paymentMethodType The payment method type eg. ideal
+     * @throws MissingMetadataException
      */
     public function validatePaymentMethodType(?string $paymentMethodType): string
     {
@@ -166,24 +165,18 @@ class MolliePaymentAdapter extends PaymentAdapter
         }
 
         if ($payment->isCanceled()) {
-            OrderPaymentCanceled::dispatch($order, $this, $paymentIntent);
-
             $this->updateTransactionStatus($transaction, 'canceled');
 
             return response()->json(['message' => 'canceled']);
         }
 
         if ($payment->isFailed()) {
-            OrderPaymentFailed::dispatch($order, $this, $paymentIntent);
-
             $this->updateTransactionStatus($transaction, 'failed');
 
             return response()->json(['message' => 'failed']);
         }
 
         if ($payment->isExpired()) {
-            OrderPaymentFailed::dispatch($order, $this, $paymentIntent);
-
             $this->updateTransactionStatus($transaction, 'expired');
 
             return response()->json(['message' => 'expired']);
