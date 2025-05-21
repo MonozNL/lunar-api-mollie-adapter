@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd664f3f0bb9c4c3930fc11b90bcb8ff",
+    "content-hash": "134edeffa6eaeac79239505f51bf2448",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2561,16 +2561,16 @@
         },
         {
             "name": "dystcz/dystore-api",
-            "version": "1.0.0-beta.16",
+            "version": "v1.0.0-beta.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MonozNL/dystore-api.git",
-                "reference": "ba77f31150a681eb098b30a52bf00c783a10a6f6"
+                "reference": "027f0cb7ffc7913952e44ce7202d6df96b8e6278"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MonozNL/dystore-api/zipball/ba77f31150a681eb098b30a52bf00c783a10a6f6",
-                "reference": "ba77f31150a681eb098b30a52bf00c783a10a6f6",
+                "url": "https://api.github.com/repos/MonozNL/dystore-api/zipball/027f0cb7ffc7913952e44ce7202d6df96b8e6278",
+                "reference": "027f0cb7ffc7913952e44ce7202d6df96b8e6278",
                 "shasum": ""
             },
             "require": {
@@ -2674,9 +2674,9 @@
                 "php"
             ],
             "support": {
-                "source": "https://github.com/MonozNL/dystore-api/tree/1.0.0-beta.16"
+                "source": "https://github.com/MonozNL/dystore-api/tree/v1.0.0-beta.16.1"
             },
-            "time": "2025-03-31T14:45:40+00:00"
+            "time": "2025-05-21T09:56:32+00:00"
         },
         {
             "name": "egulias/email-validator",

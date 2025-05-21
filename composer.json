@@ -11,7 +11,7 @@
   ],
   "homepage": "https://github.com/MonozNL/lunar-api-mollie-adapter",
   "license": "MIT",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "authors": [
     {
       "name": "Thomas van der Westen",
@@ -21,7 +21,7 @@
   ],
   "require": {
     "php": "^8.2",
-    "dystcz/dystore-api": "1.0.0-beta.16",
+    "dystcz/dystore-api": "1.0.0-beta.16.1",
     "mollie/laravel-mollie": "^3.0"
   },
   "require-dev": {
